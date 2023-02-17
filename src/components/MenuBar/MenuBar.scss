@@ -1,0 +1,42 @@
+.menu-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-self: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.plus-img {
+  width: 20px;
+  height: 20px;
+  margin-right: 22.5px;
+  cursor: pointer;
+}
+.message-img {
+  width: 20px;
+  height: 20px;
+  margin-right: 22.5px;
+  cursor: pointer;
+}
+.notification-img {
+  width: 18px;
+  height: 20px;
+  margin-right: 22.5px;
+  cursor: pointer;
+}
+.profile-img {
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.dropdown-img {
+  margin-left: 10px;
+  width: 10px;
+  height: 6.5px;
+  cursor: pointer;
+}
+.avatar-btn {
+  margin-left: -10px;
+}
