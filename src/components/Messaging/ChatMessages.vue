@@ -3,16 +3,19 @@
     side="right"
     show-if-above
     bordered
-    :breakpoint="0"
-    :model-value="true"
     :width="450"
+    :breakpoint="0"
+    v-if="!showCustomerInfoMobile"
     class="bg-white q-pa-md"
   >
     <div v-if="getSelectedChat.id" class="h-full w-full flex flex-col">
       <header
         class="pt-1 pb-2 px-2 bg-white w-full justify-between items-center flex"
       >
-        <div class="flex items-center space-x-3">
+        <div
+          class="flex items-center space-x-3"
+          @click="messagingStore.setCustomerInfoMobile(true)"
+        >
           <q-avatar class="rounded-avatar">
             <img src="https://cdn.quasar.dev/img/avatar.png" />
           </q-avatar>
@@ -42,6 +45,22 @@
           </svg>
         </div>
       </header>
+      <div class="w-full text-gray-400">Members</div>
+      <div class="w-full flex p-2">
+        <div
+          class="w-10 h-10 flex justify-center mr-2 items-center rounded-full bg-gray-200"
+          v-for="(member, index) of members.slice(0, 3)"
+          :key="index"
+        >
+          {{ initialFormat(member) }}
+        </div>
+        <div
+          class="w-10 h-10 flex justify-center mr-2 items-center rounded-full bg-gray-300"
+          v-if="members.length > 3"
+        >
+          {{ members.length - 3 }} +
+        </div>
+      </div>
       <chat-conversation-buttton
         v-if="getSelectedChat.status !== ChatTypes.CLOSED"
       />
@@ -77,16 +96,23 @@
               ]"
             >
               <div class="flex flex-col max-w-[60%] mb-2">
-                <span
-                  class="rounded-md px-4 py-3 whitespace-pre-wrap block break-words w-full"
+                <div
+                  class="rounded-md pb-3 whitespace-pre-wrap block break-words w-full"
                   :class="[
                     message.direction === Direction.OUTGOING
                       ? 'bg-primary text-white rounded-br-none'
                       : 'bg-[#E8E7FB] text-[#2E2E3A] rounded-tl-none',
                   ]"
                 >
-                  {{ message.content }}
-                </span>
+                  <div
+                    class="w-full flex justify-end pt-1 pr-1 hover:cursor-pointer text-gray-400"
+                  >
+                    <q-icon name="expand_more"></q-icon>
+                  </div>
+                  <div class="mx-4">
+                    {{ message.content }}
+                  </div>
+                </div>
                 <!-- Time and Check icon (read) -->
                 <div class="flex items-center ml-auto mr-0.5 mt-1 space-x-1">
                   <small class="text-[#9A9AAF]" style="font-size: 10px">
@@ -119,7 +145,7 @@
           </div>
         </div>
       </main>
-      <footer class="q-pa-xs q-pb-md bg-white w-full px-2 pt-2.5">
+      <footer class="q-pa-xs q-pb-xs bg-white w-full px-2 pt-2.5">
         <div v-if="getSelectedChat.status === ChatTypes.ONGOING">
           <q-input
             v-model="message"
@@ -128,7 +154,7 @@
             borderless
             bg-color="grey-2"
             type="textarea"
-            input-class="px-4 py-4"
+            input-class="px-4 py-4 h-10 sm:h-auto"
             class="rounded-xl overflow-hidden"
             @keydown.enter.prevent="sendMessage"
           />
@@ -195,7 +221,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, nextTick } from "vue";
+import { ref, computed, watch, nextTick, onMounted } from "vue";
 import type { Ref } from "vue";
 import { storeToRefs } from "pinia";
 import useMessagingStore from "src/stores/modules/messaging";
@@ -213,6 +239,7 @@ import { format, differenceInDays, isToday } from "date-fns";
 import useUserInfoStore from "src/stores/modules/userInfo";
 import ChatConversationButtton from "src/components/Messaging/ChatConversationButtton.vue";
 import Swal from "sweetalert2";
+import { getChatUsers } from "src/api/user";
 
 const messagingStore = useMessagingStore();
 const customerStore = useCustomerStore();
@@ -224,15 +251,32 @@ const props = defineProps({
     default: () => "",
   },
 });
-const emit = defineEmits(["newChatCreated"]);
+const emit = defineEmits(["newChatCreated", "closeChat"]);
+
+interface Manager {
+  user_id: string;
+  first_name: string;
+  last_name: string;
+  role_name: string;
+}
 
 const templateName: Ref<string> = ref("");
 const message: Ref<string> = ref("");
 const language: Ref<string> = ref("");
 const showMessageTemplate: Ref<boolean> = ref(false);
+// dont remove this
+// const drawerOpen = computed({
+//   set: (val: boolean) => messagingStore.setCustomerInfoMobile(val),
+//   get: () => !showCustomerInfoMobile.value,
+// });
+const members: Ref<Array<Manager>> = ref([]);
 const isTemplate: Ref<boolean> = ref(false);
-const { getContactNumber, getCustomerName, getSelectedChat } =
-  storeToRefs(messagingStore);
+const {
+  getContactNumber,
+  getCustomerName,
+  getSelectedChat,
+  showCustomerInfoMobile,
+} = storeToRefs(messagingStore);
 const { getCustomer } = storeToRefs(customerStore);
 
 const messages = computed<unknown[]>(() => {
@@ -264,6 +308,7 @@ watch(
   }
 );
 const closeChat = () => {
+  emit("closeChat");
   customerStore.$reset();
   messagingStore.closeChat();
 };
@@ -321,6 +366,15 @@ const sendMessageTemplate = (name: string, msg: string, lang: string) => {
   isTemplate.value = true;
   sendMessage();
 };
+
+const initialFormat = (member: Manager) => {
+  return member.first_name[0].toUpperCase() + member.last_name[0].toUpperCase();
+};
+
+onMounted(async () => {
+  const { data } = await getChatUsers();
+  members.value = data;
+});
 </script>
 
 <style scoped lang="scss">

@@ -1,8 +1,10 @@
 <template>
   <div style="background: white">
-    <q-layout view="lHh Lpr lFf">
+    <!-- LEFT sidebar fixed | CENTER sroll | RIGHT sidebar fixed  -->
+    <q-layout view="lHr LpR lFr">
       <Drawer
         ref="chatList"
+        v-model="openDrawer"
         v-if="!loading"
         :chat-list="chats"
         @set-chat-id="setChatID"
@@ -18,7 +20,11 @@
           <router-view />
         </q-page>
       </q-page-container>
-      <ChatMessages @new-chat-created="changeTab" :current-chat-id="chatID" />
+      <ChatMessages
+        @new-chat-created="changeTab"
+        :current-chat-id="chatID"
+        @close-chat="openDrawer = true"
+      />
     </q-layout>
   </div>
 </template>
@@ -45,6 +51,7 @@ const { getCustomer } = storeToRefs(customerStore);
 const chatList = ref();
 const chatID = ref("");
 const loading: Ref<boolean> = ref(true);
+const openDrawer: Ref<boolean> = ref(true);
 const showCustomerDialog: Ref<boolean> = ref(false);
 
 onMounted(async () => {
