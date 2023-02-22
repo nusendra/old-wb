@@ -1,0 +1,254 @@
+.main-holdd {
+}
+.sub-hold {
+}
+.centerhold {
+  margin-top: 100px;
+  margin-left: 300px;
+}
+.side-bar {
+  background-color: white;
+  cursor: pointer;
+}
+.side-bar-active {
+  background-color: #4b44f6;
+  cursor: pointer;
+}
+.sidebar-row {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  margin-top: 20px;
+  display: inline-flex;
+  cursor: pointer;
+
+  float: left;
+  clear: left;
+  background-color: white;
+}
+.sidebar-row-active {
+  width: 169px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  margin-top: 20px;
+  display: inline-flex;
+  background-color: #4b44f6;
+  cursor: pointer;
+  padding: 10px 40px;
+  border: radius 10px;
+  float: left;
+  clear: left;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin-left: -20px;
+}
+.sidebar-subtext {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+
+  color: #2e2e3a;
+  margin-left: 10px;
+}
+.img {
+}
+.img {
+  color: white;
+}
+.sidebar-subtext-active {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+
+  color: #2e2e3a;
+  margin-left: 10px;
+  color: white;
+}
+.image-holder {
+  width: 50px;
+}
+.bottom-textmainn {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17px;
+
+  color: #2e2e3a;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  align-self: center;
+}
+.bottom-textsubb {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  /* identical to box height */
+
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  text-align: center;
+
+  color: #9a9aaf;
+}
+.center-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+.modal-btn {
+  margin-top: 20px;
+}
+.phone-txt {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+
+  color: #2e2e3a;
+}
+.address-txt {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+
+  color: #2e2e3a;
+}
+.category-txt {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+
+  color: #2e2e3a;
+}
+.type-txt {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+
+  color: #2e2e3a;
+}
+.req {
+  color: red;
+}
+.toolbar-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.radio-holders {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.dialogmain {
+  padding: 30px;
+}
+.radio-holder {
+  padding: 0px 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.radio-class {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+.channel-txt {
+  margin-top: 20px;
+}
+.checkbox-class {
+  margin-top: -30px;
+  margin-bottom: -12px;
+}
+.checkbox-whatsapp {
+  margin-top: 15px;
+  margin-left: -16px;
+}
+.checkbox-line {
+  margin-right: 10px;
+  margin-left: 25px;
+}
+.checkbox-wechat {
+  margin-left: 25px;
+}
+.field-holderr {
+  margin-top: 8px;
+}
+.checkbox-isActive {
+  margin-top: 20px;
+  margin-left: -26px;
+}
+
+.lowerdialog-btn {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.row-main {
+  width: 169px;
+  height: 80px;
+  margin-left: 50px;
+}
+.rowsubhold {
+  margin-left: 10px;
+}
+.rowdialog {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+}
+.cardwidth {
+  width: 80%;
+}
+
+.label-style {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+
+  color: #2e2e3a;
+  margin-bottom: 10px;
+}
+.contactInformation-content_center {
+  text-align: center;
+  margin: auto;
+}
+.contactInformation-content {
+  flex: 1;
+  min-height: 728px;
+}
+.padding-1 {
+  flex: 1;
+  padding-right: 10px;
+}
+.padding-2 {
+  flex: 1;
+  padding-left: 10px;
+}

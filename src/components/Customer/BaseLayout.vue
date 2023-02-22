@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-lg q-mt-lg" style="background: white; border-radius: 6px">
-    <div style="max-width: 1000px">
+    <div style="flex: 1">
       <q-tabs
         v-model="tab"
         dense
@@ -13,7 +13,7 @@
       >
         <q-tab name="general" label="General Information" />
         <q-tab name="otherInformation" label="Other Information" />
-        <q-tab name="contact" label="Contact Information" />
+        <q-tab name="contactInfo" label="Contact Information" />
         <q-tab name="remark" label="Remark" />
         <q-tab name="attachment" label="Attachment" />
         <q-tab name="record" label="Service Record" />
@@ -33,10 +33,8 @@
             <!-- <OtherInformation /> -->
           </q-tab-panel>
 
-          <q-tab-panel name="Contact-Information">
-            <div class="contact-info">
-              <!-- <ContactInfo /> -->
-            </div>
+          <q-tab-panel name="contactInfo">
+            <ContactInfo />
           </q-tab-panel>
 
           <q-tab-panel name="Remark">
@@ -59,6 +57,7 @@
 import { ref } from "vue";
 // import ContactInfo from "../ContactInfo/ContactInfo.vue";
 import GeneralInformation from "src/components/Customer/GeneralInformation/index.vue";
+import ContactInfo from "src/components/Customer/ContactInfo/ContactInfo.vue";
 import ServiceRecord from "./ServiceRecord.vue";
 // import OtherInformation from "../OtherInformation/OtherInformation.vue";
 // import Remark from "../Remark/Remark.vue";
